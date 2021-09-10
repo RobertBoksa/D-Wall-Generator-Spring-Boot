@@ -43,7 +43,10 @@ public class Section {
 
     private Double theoreticalConcrete;
 
-    @ManyToMany(mappedBy = "sectionList")
+    @ManyToMany
+    @JoinTable(name = "cage_section",
+            joinColumns = @JoinColumn(name = "section_id"),
+            inverseJoinColumns = @JoinColumn(name = "cage_id"))
     private List<Cage> cageList = new ArrayList<>();
 
 

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.coderslab.model.Section;
 import pl.coderslab.repository.SectionRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +19,12 @@ public class SectionService implements ServiceForAll<Section, Long> {
     }
 
 
-
+    @Transactional
     @Override
     public List<Section> getAll() {
-        return null;
+        List<Section> sections = sectionRepository.findAll();
+        sections.forEach(c -> c.getCageList().size());
+        return sections;
     }
 
     @Override
@@ -41,9 +44,12 @@ public class SectionService implements ServiceForAll<Section, Long> {
         sectionRepository.save(section);
     }
 
+    @Transactional
     @Override
     public Optional<Section> get(Long id) {
-        return Optional.empty();
+        Optional<Section> section = sectionRepository.findById(id);
+        section.get().getCageList().size();
+        return section;
     }
 
     @Override
@@ -55,6 +61,7 @@ public class SectionService implements ServiceForAll<Section, Long> {
     public void update(Long id) {
 
     }
+
 
 
 

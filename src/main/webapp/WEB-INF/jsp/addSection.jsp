@@ -47,20 +47,35 @@
                 </tr>
 
                 <tr>
+                    <td><input type="submit" value="Zapisz"></td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+
 
                     <c:forEach var="s" begin="1" end="4" step="1">
-                        <td> <c:out value="Cage ${s}"/></td>
-                        <td>  <form:select path="cageList" items="${cageList}" itemLabel="cageName" itemValue="id"/>
-                        </td>
+                        <td><c:out value="Kosz ${s}"/></td>
+                        <%--                        <td>  <select id=`cage${s}`>--%>
+                        <%--                                <option>brak</option>--%>
+                        <%--                            <c:forEach items="${}" var="c">--%>
+                        <%--                                <option>${c.cageName}</option>--%>
+                        <%--                            </c:forEach>--%>
+                        <%--                        </select></td>--%>
+
+
+                        <td>
+                                <form:label path="cageList"/>
+                            <form:select path="cageList">
+                                <form:options items="${cageList}" itemLabel="cageName" itemValue="id"/>
+                            </form:select>
+                        <td/>
                     </c:forEach>
 
                 </tr>
 
 
-                <tr>
-                    <td><input type="submit" value="Zapisz"></td>
-                    <td></td>
-                </tr>
             </form:form>
         </table>
     </div>

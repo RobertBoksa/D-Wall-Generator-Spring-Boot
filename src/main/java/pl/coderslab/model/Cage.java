@@ -33,10 +33,7 @@ public class Cage {
 
     private Double cageBotLvl;
 
-    @ManyToMany
-    @JoinTable(name = "cages_sections",
-                joinColumns = @JoinColumn(name = "cage_id"),
-                inverseJoinColumns = @JoinColumn(name = "section_id"))
+    @ManyToMany(mappedBy = "cageList")
     private List<Section> sectionList = new ArrayList<>();
 
 
