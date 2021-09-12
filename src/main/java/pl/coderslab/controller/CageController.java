@@ -6,12 +6,12 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Cage;
 import pl.coderslab.model.Section;
 import pl.coderslab.service.CageService;
+
+import java.util.List;
 
 
 @Setter
@@ -27,10 +27,14 @@ public class CageController {
         this.cageService = cageService;
     }
 
+
     @RequestMapping("/")
     public String showAllCages(Model model){
-        return "cagesList";
+        List<Cage> cages = cageService.getAll();
+        model.addAttribute("allCag", cages);
+        return "cageList";
     }
+
 
     @GetMapping("/add")
     public String addCage(Model model, Long id){
@@ -42,8 +46,35 @@ public class CageController {
     @PostMapping("/add")
     public String addCage(Cage cage){
         cageService.add(cage);
+        return "redirect: /admin/dashboard";
+    }
+
+    @GetMapping("/update")
+    public String updateCage(Long id, Model model){
+        Cage cage = cageService.get(id).orElseThrow();
+        model.addAttribute("cage", cage);
         return "addCage";
     }
+
+    @PostMapping("/update")
+    public String updateCage(Cage cage){
+        cageService.update(cage);
+        return "redirect:/admin/cage/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteCage(@PathVariable Long id, Model model){
+        Cage cage = cageService.get(id).orElseThrow();
+        model.addAttribute("cage", cage);
+        return "acceptDelCage";
+    }
+
+    @RequestMapping ("/deleteAccepted")
+    public String deleteSection(@RequestParam Long id){
+        cageService.delete(id);
+        return "redirect:/admin/cage/";
+    }
+
 
 
 }

@@ -48,9 +48,9 @@
                         </c:forEach>
                         </td>
                         <td>${s.sectionType}</td>
-                        <td><a href="/admin/section/add?id=${s.id}">Edytuj</a></td>
+                        <td><a href="/admin/section/update?id=${s.id}">Edytuj</a></td>
                         <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Zakończ</a></td>
+                        <td><a href="/admin/section/close/${s.id}">Zakończ</a></td>
                     </tr>
                 </c:if>
             </c:forEach>
@@ -93,9 +93,9 @@
                         </c:forEach>
                         </td>
                         <td>${s.sectionType}</td>
-                        <td><a href="">Edytuj</a></td>
+                        <td><a href="/admin/section/update?id=${s.id}">Edytuj</a></td>
                         <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Usuń</a></td>
+                        <td><a href="/admin/section/delete/${s.id}">Usuń</a></td>
                     </tr>
                 </c:if>
             </c:forEach>
@@ -137,9 +137,9 @@
                         </c:forEach>
                         </td>
                         <td>${s.sectionType}</td>
-                        <td><a href="">Edytuj</a></td>
+                        <td><a href="/admin/section/update?id=${s.id}">Edytuj</a></td>
                         <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Usuń</a></td>
+                        <td><a href="/admin/section/delete/${s.id}">Usuń</a></td>
                     </tr>
                 </c:if>
             </c:forEach>

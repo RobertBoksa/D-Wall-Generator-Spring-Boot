@@ -4,6 +4,7 @@ package pl.coderslab.controller;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -46,32 +47,55 @@ public class SectionController {
     @RequestMapping("/")
     public String showAllSections(Model model){
         List<Section> sections = sectionService.getAll();
-
         model.addAttribute("allSec", sections);
         return "sectionList";
     }
 
     @GetMapping ("/add")
-    public String addSection(Model model, Long id){
-        Section section;
-        if(id != null){
-            section = sectionService.get(id).get();
-        } else {
-            section = new Section();
-        }
+    public String addSection(Model model){
+        Section section = new Section();
         model.addAttribute("section", section);
         return "addSection";
     }
 
     @PostMapping("/add")
     public String addSection(Section section){
-//        Section sectionNew = section;
-//        List<Cage> cages = new ArrayList<>();
-//        Cage cage1 = cageService.get(Long.parseLong(cageList)).get();
-//        cages.add(cage1);
-//        sectionNew.setCageList((List<Cage>) cage1);
         sectionService.add(section);
         return "redirect:/admin/dashboard";
+    }
+
+    @GetMapping("/update")
+    public String updateSection(Long id, Model model){
+       Section section = sectionService.get(id).orElseThrow();
+       model.addAttribute("section", section);
+       return "addSection";
+    }
+
+    @PostMapping("/update")
+    public String update(Section section){
+        sectionService.update(section);
+        return "redirect:/admin/section/";
+    }
+
+    @GetMapping("/close/{id}")
+    public String closeSection(@PathVariable Long id){
+        Section section = sectionService.get(id).orElseThrow();
+        section.setStatus(2);
+        sectionService.update(section);
+        return "redirect:/admin/section/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteSection(@PathVariable Long id, Model model){
+        Section section = sectionService.get(id).orElseThrow();
+        model.addAttribute("section", section);
+        return "acceptDelSection";
+    }
+
+    @RequestMapping ("/deleteAccepted")
+    public String deleteSection(@RequestParam Long id){
+        sectionService.delete(id);
+        return "redirect:/admin/section/";
     }
 
 

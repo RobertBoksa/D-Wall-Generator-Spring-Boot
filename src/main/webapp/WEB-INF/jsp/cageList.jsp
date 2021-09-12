@@ -24,103 +24,38 @@
                     <tr>
                         <th scope="col">Nazwa</th>
                         <th scope="col">Długość</th>
-                        <th scope="col">Głębokość</th>
                         <th scope="col">Szerokość</th>
-                        <th scope="col">Kosze</th>
-                        <th scope="col">Typ</th>
+                        <th scope="col">Wysokość</th>
+                        <th scope="col">Całkowita ilość</th>
+                        <th scope="col">Góra zbrojenia</th>
+                        <th scope="col">Dół zbrojenia</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><a href="">Edytuj</a></td>
-                        <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Zakończ</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <br>
-                <br>
-            </div>
 
-            <div>
-                <h3>Niewykonane sekcje</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nazwa</th>
-                        <th scope="col">Długość</th>
-                        <th scope="col">Głębokość</th>
-                        <th scope="col">Szerokość</th>
-                        <th scope="col">Kosze</th>
-                        <th scope="col">Typ</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><a href="">Edytuj</a></td>
-                        <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Usuń</a></td>
-                    </tr>
+<%--   Dokończyć formularz                 --%>
+                    <c:forEach items="${allCag}" var="c">
+                            <tr>
+                                <th scope="row">${c.cageName}</th>
+                                <td>${c.cageLength}</td>
+                                <td>${c.cageWidth}</td>
+                                <td>${c.cageHeight}</td>
+                                <td>${c.sectionList.size()}</td>
+                                <td>${c.cageTopLvl}</td>
+                                <td>${c.cageBotLvl}</td>
+                                <td><a href="/admin/cage/update?id=${c.id}">Edytuj</a></td>
+                                <td><a href="">Szczegóły</a></td>
+                                <td><a href="/admin/cage/delete/${c.id}">Usuń</a></td>
+                            </tr>
+
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
 
-            <div>
-                <br>
-                <br>
-            </div>
-
-            <div>
-                <h3>Wykonane sekcje</h3>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Nazwa</th>
-                        <th scope="col">Długość</th>
-                        <th scope="col">Głębokość</th>
-                        <th scope="col">Szerokość</th>
-                        <th scope="col">Kosze</th>
-                        <th scope="col">Typ</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td><a href="">Edytuj</a></td>
-                        <td><a href="">Szczegóły</a></td>
-                        <td><a href="">Usuń</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </main>
     </div>
 </div>
