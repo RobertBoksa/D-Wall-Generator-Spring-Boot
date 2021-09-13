@@ -5,6 +5,8 @@ import pl.coderslab.model.Digging;
 import pl.coderslab.repository.DiggingRepository;
 import pl.coderslab.repository.SoilRepository;
 
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,27 +14,32 @@ import java.util.Optional;
 public class DiggingService implements ServiceForAll<Digging, Long> {
 
     private final DiggingRepository diggingRepository;
-    private final SoilRepository soilRepository;
 
 
-    public DiggingService(DiggingRepository diggingRepository, SoilRepository soilRepository) {
+
+    public DiggingService(DiggingRepository diggingRepository) {
         this.diggingRepository = diggingRepository;
-        this.soilRepository = soilRepository;
+
     }
 
+    @Transactional
     @Override
     public List<Digging> getAll() {
-        return null;
+        List<Digging> diggingList =diggingRepository.findAll();
+        diggingList.forEach(d -> d.getLvlSoilList().size());
+        return  diggingList;
     }
 
     @Override
     public void add(Digging digging) {
-
+        LocalDateTime startTime = LocalDateTime.now();
+        digging.setStartDigging(startTime);
+        diggingRepository.save(digging);
     }
 
     @Override
     public Optional<Digging> get(Long id) {
-        return Optional.empty();
+        return diggingRepository.findById(id);
     }
 
     @Override
@@ -44,4 +51,11 @@ public class DiggingService implements ServiceForAll<Digging, Long> {
     public void update(Digging digging) {
 
     }
+
+    public Digging addAndFlash(Digging digging) {
+        LocalDateTime startTime = LocalDateTime.now();
+        digging.setStartDigging(startTime);
+        return diggingRepository.saveAndFlush(digging);
+    }
+
 }

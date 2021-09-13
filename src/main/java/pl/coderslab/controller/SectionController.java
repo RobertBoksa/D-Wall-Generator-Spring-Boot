@@ -21,9 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@EqualsAndHashCode
+
 @Controller
 @RequestMapping("admin/section")
 public class SectionController {

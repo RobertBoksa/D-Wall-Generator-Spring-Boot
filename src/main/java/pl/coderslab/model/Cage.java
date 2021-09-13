@@ -33,7 +33,7 @@ public class Cage {
 
     private Double cageBotLvl;
 
-    @ManyToMany(mappedBy = "cageList")
+    @ManyToMany(mappedBy = "cageList", cascade = CascadeType.REMOVE)
     private List<Section> sectionList = new ArrayList<>();
 
 

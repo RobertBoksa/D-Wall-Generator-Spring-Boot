@@ -2,13 +2,13 @@ package pl.coderslab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.coderslab.model.Section;
+import pl.coderslab.model.LvlSoil;
 
 import java.util.List;
 
 
 @Repository
-public interface SectionRepository extends JpaRepository<Section, Long> {
+public interface LvlSoilRepository extends JpaRepository<LvlSoil, Long> {
 
-    List<Section> findSectionsByStatusBetween(int status1, int status2);
+    List<LvlSoil> findAllByDiggingId(Long idDigging);
 }
