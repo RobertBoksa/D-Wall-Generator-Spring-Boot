@@ -25,6 +25,7 @@ public class SectionService implements ServiceForAll<Section, Long> {
     public List<Section> getAll() {
         List<Section> sections = sectionRepository.findAll();
         sections.forEach(c -> c.getCageList().size());
+        sections.forEach(d -> d.getDiggingList().size());
         return sections;
     }
 
@@ -64,7 +65,9 @@ public class SectionService implements ServiceForAll<Section, Long> {
         sectionRepository.save(section);
     }
 
-
+    public List<Section> sectionsNotEnd(int v1, int v2){
+        return sectionRepository.findSectionsByStatusBetween(v1, v2);
+    }
 
 
 

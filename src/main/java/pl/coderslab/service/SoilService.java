@@ -20,12 +20,13 @@ public class SoilService implements ServiceForAll<Soil, Long> {
 
     @Override
     public List<Soil> getAll() {
-        return null;
+        return soilRepository.findAll();
     }
+
 
     @Override
     public void add(Soil soil) {
-
+        soilRepository.save(soil);
     }
 
     @Override

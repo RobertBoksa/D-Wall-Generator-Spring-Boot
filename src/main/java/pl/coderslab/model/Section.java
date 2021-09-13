@@ -49,7 +49,7 @@ public class Section {
             inverseJoinColumns = @JoinColumn(name = "cage_id"))
     private List<Cage> cageList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "section")
+    @OneToMany(mappedBy = "section", cascade = CascadeType.REMOVE)
     private List<Digging> diggingList = new ArrayList<>();
 
 

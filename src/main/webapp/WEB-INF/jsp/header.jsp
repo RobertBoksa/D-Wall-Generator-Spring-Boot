@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Dashboard</title>
+    <title>D-wall Generator</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -66,9 +66,15 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/digging/">
                             <span data-feather="shopping-cart"></span>
-                            Kopanie
+                            Rozpocznij kopanie
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/digging/reports">
+                            <span data-feather="shopping-cart"></span>
+                            Raporty z kopania sekcji
                         </a>
                     </li>
                     <li class="nav-item">

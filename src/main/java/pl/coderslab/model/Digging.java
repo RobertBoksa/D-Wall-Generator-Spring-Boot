@@ -4,9 +4,12 @@ package pl.coderslab.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,6 +17,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @Table(name = "digging")
 public class Digging {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,19 +27,14 @@ public class Digging {
 
     private LocalDateTime endDigging;
 
-    private Double startLvl;
-
-    private Double endLvl;
-
     private String partName;
 
     private Double partLength;
 
-    @ManyToOne
-    @JoinColumn(name = "soil_id")
-    private Soil soil;
 
     @ManyToOne
     private Section section;
 
+    @OneToMany(mappedBy = "digging")
+    private List<LvlSoil> lvlSoilList = new ArrayList<>();
 }
