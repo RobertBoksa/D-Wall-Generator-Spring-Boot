@@ -13,7 +13,7 @@ public interface ServiceForAll<T, V> {
 
       void delete(V id);
 
-      void update(V id);
+      void update(T t);
 
 
 }

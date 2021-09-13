@@ -8,6 +8,7 @@ import pl.coderslab.repository.SectionRepository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 public class SectionService implements ServiceForAll<Section, Long> {
@@ -30,7 +31,6 @@ public class SectionService implements ServiceForAll<Section, Long> {
     @Override
     public void add(Section section) {
         Double concrete;
-        section.setStatus(0);
         if (section.getSectionType().equals("o")) {
             concrete = concreteCalc(section) - 2 * stopSoil(section);
             section.setTheoreticalConcrete(concrete);
@@ -44,7 +44,7 @@ public class SectionService implements ServiceForAll<Section, Long> {
         sectionRepository.save(section);
     }
 
-    @Transactional
+
     @Override
     public Optional<Section> get(Long id) {
         Optional<Section> section = sectionRepository.findById(id);
@@ -54,12 +54,14 @@ public class SectionService implements ServiceForAll<Section, Long> {
 
     @Override
     public void delete(Long id) {
-
+        Section section = get(id).orElseThrow();
+        sectionRepository.delete(section);
     }
 
-    @Override
-    public void update(Long id) {
 
+    @Override
+    public void update(Section section) {
+        sectionRepository.save(section);
     }
 
 

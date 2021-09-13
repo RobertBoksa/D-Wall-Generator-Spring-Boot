@@ -39,7 +39,6 @@ public class PersonService implements ServiceForAll<Person, Long>{
     }
 
     @Override
-    public void update(Long id) {
-
+    public void update(Person person) {
     }
 }

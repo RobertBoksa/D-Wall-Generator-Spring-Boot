@@ -39,42 +39,40 @@
                 <tr>
                     <td><form:label path="sectionType">Typ sekcji:</form:label></td>
                     <td><form:select path="sectionType">
-                        <form:option value="o" label="Otwierająca"/>
-                        <form:option value="n" label="Następująca"/>
-                        <form:option value="z" label="Zamykająca"/>
+                        <form:option value="Otwierająca" label="Otwierająca"/>
+                        <form:option value="Następująca" label="Następująca"/>
+                        <form:option value="Zamykająca" label="Zamykająca"/>
                     </form:select>
                     </td>
                 </tr>
+
+                <c:forEach var="s" begin="0" end="3" step="1">
+                    <tr>
+                        <td><c:out value="Kosz ${s+1}"/></td>
+                        <td>
+                                <form:label path="cageList"/>
+                            <form:select path="cageList[${s}]">
+                            <form:option value="${null}">brak</form:option>
+                                <form:options items="${cageList}" itemLabel="cageName" itemValue="id"/>
+                            </form:select>
+                        <td/>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td><form:label path="status">Status sekcji:</form:label></td>
+                    <td><form:select path="status" itemValue="0">
+                        <form:option value="0" label="Nierozpoczęta"/>
+                        <form:option value="1" label="Wykonywana"/>
+                        <form:option value="2" label="Zamknięta"/>
+                    </form:select>
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td><input type="submit" value="Zapisz"></td>
                     <td></td>
                 </tr>
-
-
-                <tr>
-
-
-                    <c:forEach var="s" begin="1" end="4" step="1">
-                        <td><c:out value="Kosz ${s}"/></td>
-                        <%--                        <td>  <select id=`cage${s}`>--%>
-                        <%--                                <option>brak</option>--%>
-                        <%--                            <c:forEach items="${}" var="c">--%>
-                        <%--                                <option>${c.cageName}</option>--%>
-                        <%--                            </c:forEach>--%>
-                        <%--                        </select></td>--%>
-
-
-                        <td>
-                                <form:label path="cageList"/>
-                            <form:select path="cageList">
-                                <form:options items="${cageList}" itemLabel="cageName" itemValue="id"/>
-                            </form:select>
-                        <td/>
-                    </c:forEach>
-
-                </tr>
-
 
             </form:form>
         </table>

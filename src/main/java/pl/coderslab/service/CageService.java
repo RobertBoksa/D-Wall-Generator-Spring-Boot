@@ -6,6 +6,7 @@ import pl.coderslab.model.Cage;
 import pl.coderslab.repository.CageRepository;
 
 import javax.lang.model.element.Name;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +20,12 @@ public class CageService implements ServiceForAll<Cage, Long> {
         this.cageRepository = cageRepository;
     }
 
+    @Transactional
     @Override
     public List<Cage> getAll() {
-        return cageRepository.findAll();
+        List<Cage> cages = cageRepository.findAll();
+        cages.forEach(c -> c.getSectionList().size());
+        return cages;
     }
 
     @Override
@@ -31,16 +35,17 @@ public class CageService implements ServiceForAll<Cage, Long> {
 
     @Override
     public Optional<Cage> get(Long id) {
-        return Optional.empty();
+        return cageRepository.findById(id);
     }
 
     @Override
     public void delete(Long id) {
-
+        Cage cage = cageRepository.getById(id);
+        cageRepository.delete(cage);
     }
 
     @Override
-    public void update(Long id) {
-
+    public void update(Cage cage) {
+        cageRepository.save(cage);
     }
 }
