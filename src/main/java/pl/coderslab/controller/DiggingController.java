@@ -27,7 +27,7 @@ public class DiggingController {
 
     @ModelAttribute("sections")
     public List<Section> showAllSection(){
-       return sectionService.sectionsNotEnd(0, 1);
+       return sectionService.sectionsNotEnd(1);
     }
 
     @ModelAttribute("allSections")

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import pl.coderslab.model.Cage;
@@ -18,6 +19,7 @@ import pl.coderslab.service.CageService;
 import pl.coderslab.service.SectionService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class SectionController {
     }
 
 
-    @ModelAttribute("cageList")
+    @ModelAttribute("cageLists")
     public List<Cage> cageList(){
        return cageService.getAll();
     }
@@ -57,7 +59,10 @@ public class SectionController {
     }
 
     @PostMapping("/add")
-    public String addSection(Section section){
+    public String addSection(@Valid Section section, BindingResult result){
+       if(result.hasErrors()){
+           return "addSection";
+       }
         sectionService.add(section);
         return "redirect:/admin/dashboard";
     }

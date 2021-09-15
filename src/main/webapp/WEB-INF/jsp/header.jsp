@@ -54,7 +54,7 @@
             <div class="position-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/dashboard">
+                        <a class="nav-link active" aria-current="page" href="/">
                             <span data-feather="home"></span>
                             Menu główne
                         </a>
@@ -78,13 +78,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="users"></span>
-                            Odpiaszczanie
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="/admin/concrete/">
                             <span data-feather="bar-chart-2"></span>
                             Betonowanie
                         </a>
@@ -93,6 +87,12 @@
                         <a class="nav-link" href="/admin/cage/">
                             <span data-feather="layers"></span>
                             Kosze zbrojeniowe
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <span data-feather="layers"></span>
+                            WYLOGUJ
                         </a>
                     </li>
                 </ul>

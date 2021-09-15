@@ -21,8 +21,8 @@
         <table class="table">
             <form:form  method="post" modelAttribute="digging">
                 <tr>
-                    <td><form:label path="section">Nazwę sekcji:</form:label></td>
-                    <td><form:select path="section" items="${sections}" itemValue="id" itemLabel="sectionName"/></td>
+                    <td><form:label path="sectionDigg">Nazwę sekcji:</form:label></td>
+                    <td><form:select path="sectionDigg" items="${sections}" itemValue="id" itemLabel="sectionName"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="partName"/>Podaj nazwę zbioru:</td>

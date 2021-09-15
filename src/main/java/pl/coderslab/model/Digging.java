@@ -33,7 +33,7 @@ public class Digging {
 
 
     @ManyToOne
-    private Section section;
+    private Section sectionDigg;
 
     @OneToMany(mappedBy = "digging")
     private List<LvlSoil> lvlSoilList = new ArrayList<>();

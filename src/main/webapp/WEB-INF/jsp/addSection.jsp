@@ -23,18 +23,22 @@
                 <tr>
                     <td><form:label path="sectionName">Nazwę sekcji:</form:label></td>
                     <td><form:input path="sectionName"/></td>
+                    <td><form:errors path="sectionName"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionWidth">Szerokość sekcji:</form:label></td>
-                    <td><form:input path="sectionWidth"/></td>
+                    <td><form:input path="sectionWidth" type="number"/></td>
+                    <td><form:errors path="sectionWidth"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionLength">Długość sekcji:</form:label></td>
-                    <td><form:input path="sectionLength"/></td>
+                    <td><form:input path="sectionLength" type="number"/></td>
+                    <td><form:errors path="sectionLength"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionDepth">Głębokość sekcji:</form:label></td>
-                    <td><form:input path="sectionDepth"/></td>
+                    <td><form:input path="sectionDepth" type="number"/></td>
+                    <td><form:errors path="sectionDepth"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionType">Typ sekcji:</form:label></td>
@@ -50,14 +54,15 @@
                     <tr>
                         <td><c:out value="Kosz ${s+1}"/></td>
                         <td>
-                                <form:label path="cageList"/>
                             <form:select path="cageList[${s}]">
                             <form:option value="${null}">brak</form:option>
-                                <form:options items="${cageList}" itemLabel="cageName" itemValue="id"/>
+                                <form:options items="${cageLists}" itemLabel="cageName" itemValue="id"/>
                             </form:select>
                         <td/>
+                        <td><form:errors path="cageList"/></td>
                     </tr>
                 </c:forEach>
+
                 <tr>
                     <td><form:label path="status">Status sekcji:</form:label></td>
                     <td><form:select path="status" itemValue="0">
@@ -67,7 +72,6 @@
                     </form:select>
                     </td>
                 </tr>
-
 
                 <tr>
                     <td><input type="submit" value="Zapisz"></td>

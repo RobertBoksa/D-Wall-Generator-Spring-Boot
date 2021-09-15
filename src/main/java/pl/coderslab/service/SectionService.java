@@ -55,8 +55,7 @@ public class SectionService implements ServiceForAll<Section, Long> {
 
     @Override
     public void delete(Long id) {
-        Section section = get(id).orElseThrow();
-        sectionRepository.delete(section);
+        sectionRepository.deleteById(id);
     }
 
 
@@ -65,8 +64,8 @@ public class SectionService implements ServiceForAll<Section, Long> {
         sectionRepository.save(section);
     }
 
-    public List<Section> sectionsNotEnd(int v1, int v2){
-        return sectionRepository.findSectionsByStatusBetween(v1, v2);
+    public List<Section> sectionsNotEnd(int v1){
+        return sectionRepository.findSectionsByStatus(v1);
     }
 
 

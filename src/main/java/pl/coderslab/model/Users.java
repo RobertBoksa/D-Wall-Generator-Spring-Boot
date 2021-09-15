@@ -11,18 +11,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 @EqualsAndHashCode
-@Table(name = "person")
-public class Person {
+@Table(name = "users")
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String logIn;
+    private String username;
 
     private String password;
 
-    private String function;
+    private String role;
 
-    private boolean isAdmin;
+    private int enabled;
 }
