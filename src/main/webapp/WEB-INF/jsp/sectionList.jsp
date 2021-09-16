@@ -50,7 +50,10 @@
                         <td>${s.sectionType}</td>
                         <td><a href="/admin/section/update?id=${s.id}">Edytuj</a></td>
                         <td><a href="">Szczegóły</a></td>
-                        <td><a href="/admin/section/close/${s.id}">Zakończ</a></td>
+                        <c:if test="${not empty s.concreteList}">
+                            <td><a href="/admin/section/close/${s.id}">Zakończ</a></td>
+                        </c:if>
+
                     </tr>
                 </c:if>
             </c:forEach>

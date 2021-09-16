@@ -27,7 +27,7 @@ public class DiggingController {
 
     @ModelAttribute("sections")
     public List<Section> showAllSection(){
-       return sectionService.sectionsNotEnd(0, 1);
+       return sectionService.sectionsNotEnd(1);
     }
 
     @ModelAttribute("allSections")
@@ -44,8 +44,11 @@ public class DiggingController {
 
     @PostMapping("/")
     public String startDigging(Digging digging){
-       Long id =  diggingService.addAndFlash(digging).getId();
-        return "redirect:/lvlSoil/"+id;
+        Digging diggingReturned = diggingService.addAndFlash(digging);
+       Long idSec = diggingReturned.getSectionDigg().getId();
+       Long idDig = diggingReturned.getId();
+       sectionService.updateStartTime(idSec);
+        return "redirect:/lvlSoil/"+idDig;
     }
 
     @RequestMapping("/reports")

@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface SectionRepository extends JpaRepository<Section, Long> {
 
-    List<Section> findSectionsByStatusBetween(int status1, int status2);
+    List<Section> findSectionsByStatus(int status1);
+
 }

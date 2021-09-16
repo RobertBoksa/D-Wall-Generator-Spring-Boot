@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import pl.coderslab.model.Cage;
@@ -18,6 +19,7 @@ import pl.coderslab.service.CageService;
 import pl.coderslab.service.SectionService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class SectionController {
     }
 
 
-    @ModelAttribute("cageList")
+    @ModelAttribute("cageLists")
     public List<Cage> cageList(){
        return cageService.getAll();
     }
@@ -57,28 +59,33 @@ public class SectionController {
     }
 
     @PostMapping("/add")
-    public String addSection(Section section){
+    public String addSection(@Valid Section section, BindingResult result){
+       if(result.hasErrors()){
+           return "addSection";
+       }
         sectionService.add(section);
-        return "redirect:/admin/dashboard";
+        return "redirect:/";
     }
 
     @GetMapping("/update")
     public String updateSection(Long id, Model model){
-       Section section = sectionService.get(id).orElseThrow();
+       Section section = sectionService.get(id).get();
        model.addAttribute("section", section);
        return "addSection";
     }
 
     @PostMapping("/update")
-    public String update(Section section){
+    public String update(@Valid Section section, BindingResult result){
+        if(result.hasErrors()){
+            return "addSection";
+        }
         sectionService.update(section);
         return "redirect:/admin/section/";
     }
 
     @GetMapping("/close/{id}")
     public String closeSection(@PathVariable Long id){
-        Section section = sectionService.get(id).orElseThrow();
-        section.setStatus(2);
+        Section section = sectionService.endSection(id);
         sectionService.update(section);
         return "redirect:/admin/section/";
     }
