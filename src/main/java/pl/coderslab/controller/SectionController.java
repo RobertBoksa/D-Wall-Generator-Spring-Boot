@@ -64,26 +64,28 @@ public class SectionController {
            return "addSection";
        }
         sectionService.add(section);
-        return "redirect:/admin/dashboard";
+        return "redirect:/";
     }
 
     @GetMapping("/update")
     public String updateSection(Long id, Model model){
-       Section section = sectionService.get(id).orElseThrow();
+       Section section = sectionService.get(id).get();
        model.addAttribute("section", section);
        return "addSection";
     }
 
     @PostMapping("/update")
-    public String update(Section section){
+    public String update(@Valid Section section, BindingResult result){
+        if(result.hasErrors()){
+            return "addSection";
+        }
         sectionService.update(section);
         return "redirect:/admin/section/";
     }
 
     @GetMapping("/close/{id}")
     public String closeSection(@PathVariable Long id){
-        Section section = sectionService.get(id).orElseThrow();
-        section.setStatus(2);
+        Section section = sectionService.endSection(id);
         sectionService.update(section);
         return "redirect:/admin/section/";
     }

@@ -23,16 +23,19 @@
                 <tr>
                     <td><form:label path="sectionCon">Nazwę sekcji:</form:label></td>
                     <td><form:select path="sectionCon" items="${sections}" itemValue="id" itemLabel="sectionName"/></td>
+                    <td><form:errors path="sectionCon"/></td>
                 </tr>
 
                 <tr>
                     <td><form:label path="bentoniteHeight"/>Podaj wysokość bentonitu:</td>
                     <td><form:input path="bentoniteHeight"/></td>
+                    <td><form:errors path="bentoniteHeight"/></td>
                 </tr>
 
                 <tr>
                     <td><form:label path="concreteValue"/>Podaj ilość betonu:</td>
                     <td><form:input path="concreteValue"/></td>
+                    <td><form:errors path="concreteValue"/></td>
                 </tr>
 
                 <tr>

@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,13 +19,13 @@ public class Concrete {
 
     private LocalDateTime controlTime;
 
-    @NotEmpty
-    @PositiveOrZero
+    @NotNull
+    @DecimalMin("0.10")
     private Double bentoniteHeight;
 
-    @NotEmpty
-    @PositiveOrZero
-    private Double concreteValue;
+    @NotNull
+    @Min(value = 1)
+    private Integer concreteValue;
 
     @ManyToOne
     private Section sectionCon;

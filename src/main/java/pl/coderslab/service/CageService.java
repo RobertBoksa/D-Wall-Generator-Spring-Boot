@@ -30,6 +30,7 @@ public class CageService implements ServiceForAll<Cage, Long> {
 
     @Override
     public void add(Cage cage) {
+        cage = calcBottomOfCage(cage);
         cageRepository.save(cage);
     }
 
@@ -46,6 +47,15 @@ public class CageService implements ServiceForAll<Cage, Long> {
 
     @Override
     public void update(Cage cage) {
+        cage = calcBottomOfCage(cage);
         cageRepository.save(cage);
     }
+
+
+
+    private Cage calcBottomOfCage(Cage cage){
+        cage.setCageBotLvl(1.00 * cage.getCageTopLvl()- cage.getCageHeight());
+        return cage;
+    }
 }
+

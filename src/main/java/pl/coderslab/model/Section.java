@@ -30,9 +30,9 @@ public class Section{
     @NotEmpty
     private String sectionName;
 
-    @NotNull
-//    @Pattern(regexp = "\\d+.\\d{1,2}||\\d+", message = "must be a number ")
 
+//    @Pattern(regexp = "\\d+.\\d{1,2}||\\d+", message = "must be a number ")
+    @NotNull
     @DecimalMin("0.50")
     @DecimalMax("10.00")
     private Double sectionLength;

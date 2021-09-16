@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: robert
@@ -41,9 +42,12 @@
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+        <div class="navbar-brand col-md-3 col-lg-2 me-0 px-3">
+            <p>Witaj ${pageContext.request.remoteUser}</p>
+        </div>
     <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-            <a class="nav-link px-3" href="#">Sign out</a>
+          <a class="nav-link px-3" href="/logout">Wyloguj</a>
         </div>
     </div>
 </header>
@@ -59,12 +63,18 @@
                             Menu główne
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/section/">
-                            <span data-feather="file"></span>
-                            Lista sekcji
-                        </a>
-                    </li>
+
+                    <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/section/">
+                                <span data-feather="file"></span>
+                                Lista sekcji
+                            </a>
+                        </li>
+                    </c:if>
+
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="/digging/">
                             <span data-feather="shopping-cart"></span>
@@ -77,24 +87,23 @@
                             Raporty z kopania sekcji
                         </a>
                     </li>
+
+                    <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/concrete/">
                             <span data-feather="bar-chart-2"></span>
                             Betonowanie
                         </a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/cage/">
                             <span data-feather="layers"></span>
                             Kosze zbrojeniowe
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">
-                            <span data-feather="layers"></span>
-                            WYLOGUJ
-                        </a>
-                    </li>
+                    </c:if>
+
                 </ul>
             </div>
         </nav>

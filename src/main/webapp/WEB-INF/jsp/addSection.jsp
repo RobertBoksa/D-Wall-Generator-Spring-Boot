@@ -23,21 +23,21 @@
                 <tr>
                     <td><form:label path="sectionName">Nazwę sekcji:</form:label></td>
                     <td><form:input path="sectionName"/></td>
-                    <td><form:errors path="sectionName"/></td>
+                    <td><form:errors path="sectionName" class="alert-danger"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionWidth">Szerokość sekcji:</form:label></td>
-                    <td><form:input path="sectionWidth" type="number"/></td>
-                    <td><form:errors path="sectionWidth"/></td>
+                    <td><form:input path="sectionWidth" type="number" step="0.01"/></td>
+                    <td><form:errors path="sectionWidth" class="alert-danger"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionLength">Długość sekcji:</form:label></td>
-                    <td><form:input path="sectionLength" type="number"/></td>
+                    <td><form:input path="sectionLength" type="number" step="0.01"/></td>
                     <td><form:errors path="sectionLength"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="sectionDepth">Głębokość sekcji:</form:label></td>
-                    <td><form:input path="sectionDepth" type="number"/></td>
+                    <td><form:input path="sectionDepth" type="number" step="0.01"/></td>
                     <td><form:errors path="sectionDepth"/></td>
                 </tr>
                 <tr>

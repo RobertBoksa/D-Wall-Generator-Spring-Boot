@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import pl.coderslab.model.Section;
 import pl.coderslab.service.ConcreteService;
 import pl.coderslab.service.SectionService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -40,7 +42,10 @@ public class ConcreteController {
     }
 
     @PostMapping("/")
-    public String addConcrete(Concrete concrete){
+    public String addConcrete(@Valid Concrete concrete, BindingResult result){
+        if(result.hasErrors()){
+            return "addConcrete";
+        }
         concreteService.add(concrete);
         return "addConcrete";
     }

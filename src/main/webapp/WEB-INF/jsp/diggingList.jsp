@@ -25,7 +25,7 @@
                 <c:forEach items="${s.diggingList}" var="dl">
                     <thead>
                     <tr>
-                        <th scope="col">${dl.partName}: ${dl.partLength} [m]</th>
+                        <th scope="col">${dl.partName}: długość zbioru ${dl.partLength} [m]</th>
                         <th scope="col">Grunt:</th>
                     </tr>
                 </thead>

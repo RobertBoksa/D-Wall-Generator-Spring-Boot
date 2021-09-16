@@ -6,11 +6,13 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Cage;
 import pl.coderslab.model.Section;
 import pl.coderslab.service.CageService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -37,16 +39,19 @@ public class CageController {
 
 
     @GetMapping("/add")
-    public String addCage(Model model, Long id){
+    public String addCage(Model model){
         Cage cage = new Cage();
         model.addAttribute("cage", cage);
         return "addCage";
     }
 
     @PostMapping("/add")
-    public String addCage(Cage cage){
+    public String addCage(@Valid Cage cage, BindingResult result){
+        if(result.hasErrors()){
+            return "addCage";
+        }
         cageService.add(cage);
-        return "redirect: /admin/dashboard";
+        return "redirect:/";
     }
 
     @GetMapping("/update")
@@ -57,7 +62,10 @@ public class CageController {
     }
 
     @PostMapping("/update")
-    public String updateCage(Cage cage){
+    public String updateCage(@Valid Cage cage, BindingResult result){
+        if(result.hasErrors()){
+            return "addCage";
+        }
         cageService.update(cage);
         return "redirect:/admin/cage/";
     }

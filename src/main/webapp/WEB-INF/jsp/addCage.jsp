@@ -23,33 +23,33 @@
             <tr>
                 <td><form:label path="cageName">Nazwę kosza:</form:label></td>
                 <td><form:input path="cageName"/></td>
+                <td><form:errors path="cageName" class="alert-danger"/></td>
             </tr>
             <tr>
                 <td><form:label path="cageWidth">Szerokość kosza:</form:label></td>
-                <td><form:input path="cageWidth"/></td>
+                <td><form:input path="cageWidth" type="number" step="0.01"/></td>
+                <td><form:errors path="cageWidth" class="alert-danger" /></td>
             </tr>
             <tr>
                 <td><form:label path="cageLength">Długość kosza:</form:label></td>
-                <td><form:input path="cageLength"/></td>
+                <td><form:input path="cageLength" type="number" step="0.01"/></td>
+                <td><form:errors path="cageLength" class="alert-danger"/></td>
             </tr>
             <tr>
                 <td><form:label path="cageHeight">Wysokość kosza:</form:label></td>
-                <td><form:input path="cageHeight"/></td>
+                <td><form:input path="cageHeight" type="number" step="0.01"/></td>
+                <td><form:errors path="cageHeight" class="alert-danger"/></td>
             </tr>
             <tr>
                 <td><form:label path="cageWeight">Ciężar kosza:</form:label></td>
-                <td><form:input path="cageWeight"/></td>
+                <td><form:input path="cageWeight" type="number" step="0.01"/></td>
+                <td><form:errors path="cageWeight" class="alert-danger"/></td>
             </tr>
             <tr>
                 <td><form:label path="cageTopLvl">Poziom góry kosza:</form:label></td>
-                <td><form:input path="cageTopLvl"/></td>
+                <td><form:input path="cageTopLvl" type="number" step="0.01"/></td>
+                <td><form:errors path="cageTopLvl" class="alert-danger"/></td>
             </tr>
-            <tr>
-                <td><form:label path="cageBotLvl">Poziom dołu kosza:</form:label></td>
-                <td><form:input path="cageBotLvl"/></td>
-            </tr>
-
-
 
             <tr>
                 <td><input type="submit" value="Zapisz"></td>
