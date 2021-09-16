@@ -40,6 +40,7 @@
                 <tr>
                     <td><form:label path="partLength"/>Podaj długość zbioru:</td>
                     <td><form:input path="partLength"/></td>
+                    <td><form:errors path="partLength" class="alert-danger"/></td>
                 </tr>
 
 

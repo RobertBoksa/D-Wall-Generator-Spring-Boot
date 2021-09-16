@@ -73,10 +73,6 @@ public class Section{
     private List<Concrete> concreteList = new ArrayList<>();
 
 
-
-
-
-
     @NotNull
     @Range(min = 0, max = 2)
     private int status; // 0 - not started, 1 - just doing, 2 - done

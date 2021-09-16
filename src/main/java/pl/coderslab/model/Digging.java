@@ -4,9 +4,12 @@ package pl.coderslab.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +32,9 @@ public class Digging {
 
     private String partName;
 
+    @NotNull
+    @DecimalMin("0.30")
     private Double partLength;
-
 
     @ManyToOne
     private Section sectionDigg;

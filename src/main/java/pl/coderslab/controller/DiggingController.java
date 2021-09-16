@@ -3,12 +3,14 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Digging;
 import pl.coderslab.model.Section;
 import pl.coderslab.service.DiggingService;
 import pl.coderslab.service.SectionService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -43,7 +45,10 @@ public class DiggingController {
     }
 
     @PostMapping("/")
-    public String startDigging(Digging digging){
+    public String startDigging(@Valid Digging digging, BindingResult result){
+        if(result.hasErrors()){
+            return "choseDiggingSection";
+        }
         Digging diggingReturned = diggingService.addAndFlash(digging);
        Long idSec = diggingReturned.getSectionDigg().getId();
        Long idDig = diggingReturned.getId();

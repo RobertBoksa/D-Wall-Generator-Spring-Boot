@@ -2,6 +2,7 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.model.Digging;
 import pl.coderslab.model.LvlSoil;
@@ -10,6 +11,7 @@ import pl.coderslab.service.DiggingService;
 import pl.coderslab.service.LvlSoilService;
 import pl.coderslab.service.SoilService;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,8 +40,6 @@ public class LvlSoilController {
 
     }
 
-
-
     @RequestMapping("/{idDigging}")
     private String addLvl(@PathVariable Long idDigging, Model model){
         LvlSoil lvlSoil = new LvlSoil();
@@ -48,7 +48,10 @@ public class LvlSoilController {
     }
 
     @PostMapping("/{idDigging}")
-    private String addLvl(@PathVariable Long idDigging, LvlSoil lvlSoil){
+    private String addLvl(@PathVariable Long idDigging, @Valid LvlSoil lvlSoil, BindingResult result){
+        if(result.hasErrors()){
+            return "addLvlSoil";
+        }
         Digging digging = diggingService.get(idDigging).orElseThrow();
         lvlSoil.setDigging(digging);
         lvlSoilService.add(lvlSoil);
