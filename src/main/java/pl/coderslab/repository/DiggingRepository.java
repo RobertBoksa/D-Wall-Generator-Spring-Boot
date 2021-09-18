@@ -7,4 +7,6 @@ import pl.coderslab.model.Digging;
 
 @Repository
 public interface DiggingRepository extends JpaRepository<Digging, Long> {
+
+
 }

@@ -22,21 +22,25 @@
             <form:form method="post" modelAttribute="lvlSoil">
                                 <tr>
                                     <td><form:label path="lvlTop">Góra warstwy gruntu:</form:label></td>
-                                    <td><form:input path="lvlTop" value = "${allById[allById.size()-1].lvlBot}"/></td>
+                                    <td><form:input path="lvlTop" value = "${allById[allById.size()-1].lvlBot}" type="number" step="0.5"/></td>
+                                    <td><form:errors path="lvlTop" class="alert-danger"/></td>
                                 </tr>
 
                 <tr>
                     <td><form:label path="lvlBot">Dół warstwy gruntu:</form:label></td>
-                    <td><form:input path="lvlBot"/></td>
+                    <td><form:input path="lvlBot" type="number" step="0.5"/></td>
+                    <td><form:errors path="lvlBot" class="alert-danger"/></td>
                 </tr>
 
                 <tr>
                     <td>
                             <form:label path="soil"/>
                         <form:select path="soil">
+                            <form:option value="${null}" label="Brak"/>
                             <form:options items="${soilList}" itemLabel="soilName" itemValue="id"/>
                         </form:select>
                     <td/>
+                    <td><form:errors path="soil" class="alert-danger"/></td>
                 </tr>
 
 

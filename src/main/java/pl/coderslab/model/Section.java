@@ -4,6 +4,7 @@ package pl.coderslab.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SelectBeforeUpdate;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.NumberFormat;
 import pl.coderslab.validator.CageListNotEmpty;
@@ -31,7 +32,7 @@ public class Section{
     private String sectionName;
 
 
-//    @Pattern(regexp = "\\d+.\\d{1,2}||\\d+", message = "must be a number ")
+
     @NotNull
     @DecimalMin("0.50")
     @DecimalMax("10.00")
@@ -52,7 +53,7 @@ public class Section{
     //this value will write when concrete finished
     private LocalDateTime sectionEnd;
 
-    //start, next, ending
+    @NotNull
     private String sectionType;
 
 
@@ -69,12 +70,8 @@ public class Section{
     @OneToMany(mappedBy = "sectionDigg", cascade = CascadeType.REMOVE)
     private List<Digging> diggingList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "sectionCon",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "sectionCon", cascade = CascadeType.REMOVE)
     private List<Concrete> concreteList = new ArrayList<>();
-
-
-
-
 
 
     @NotNull

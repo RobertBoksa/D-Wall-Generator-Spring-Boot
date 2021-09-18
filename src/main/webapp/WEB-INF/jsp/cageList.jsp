@@ -13,11 +13,11 @@
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Lista Sekcji</h1>
+                <h1 class="h2">Kosze zbrojeniowe</h1>
             </div>
 
             <div>
-                <h3>Rozpoczęte sekcje</h3>
+                <h3>Lista koszy zbrojeniowych</h3>
                 <table class="table">
                     <thead>
                     <tr>

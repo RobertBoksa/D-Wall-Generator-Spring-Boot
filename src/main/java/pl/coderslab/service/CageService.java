@@ -45,6 +45,7 @@ public class CageService implements ServiceForAll<Cage, Long> {
         cageRepository.delete(cage);
     }
 
+
     @Override
     public void update(Cage cage) {
         cage = calcBottomOfCage(cage);

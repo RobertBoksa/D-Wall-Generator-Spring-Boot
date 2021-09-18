@@ -43,11 +43,13 @@
                 <tr>
                     <td><form:label path="sectionType">Typ sekcji:</form:label></td>
                     <td><form:select path="sectionType">
+                        <form:option value="${null}" label="Brak"/>
                         <form:option value="Otwierająca" label="Otwierająca"/>
                         <form:option value="Następująca" label="Następująca"/>
                         <form:option value="Zamykająca" label="Zamykająca"/>
                     </form:select>
                     </td>
+                    <td><form:errors path="sectionType"/></td>
                 </tr>
 
                 <c:forEach var="s" begin="0" end="3" step="1">
@@ -77,7 +79,6 @@
                     <td><input type="submit" value="Zapisz"></td>
                     <td></td>
                 </tr>
-
             </form:form>
         </table>
     </div>

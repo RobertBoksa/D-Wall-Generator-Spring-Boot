@@ -19,23 +19,28 @@
 
     <div>
         <table class="table">
-            <form:form  method="post" modelAttribute="concrete">
+            <form:form method="post" modelAttribute="concrete">
                 <tr>
                     <td><form:label path="sectionCon">Nazwę sekcji:</form:label></td>
-                    <td><form:select path="sectionCon" items="${sections}" itemValue="id" itemLabel="sectionName"/></td>
-                    <td><form:errors path="sectionCon"/></td>
+                    <td>
+                        <form:select path="sectionCon">
+                            <form:option value="${null}" label="Brak"/>
+                            <form:options items="${sections}" itemValue="id" itemLabel="sectionName"/>
+                        </form:select>
+                    <td><form:errors path="sectionCon" class="alert-danger"/></td>
+                    </td>
                 </tr>
 
                 <tr>
                     <td><form:label path="bentoniteHeight"/>Podaj wysokość bentonitu:</td>
-                    <td><form:input path="bentoniteHeight"/></td>
-                    <td><form:errors path="bentoniteHeight"/></td>
+                    <td><form:input path="bentoniteHeight" type="number" step="0.5"/></td>
+                    <td><form:errors path="bentoniteHeight" class="alert-danger"/></td>
                 </tr>
 
                 <tr>
                     <td><form:label path="concreteValue"/>Podaj ilość betonu:</td>
-                    <td><form:input path="concreteValue"/></td>
-                    <td><form:errors path="concreteValue"/></td>
+                    <td><form:input path="concreteValue" type="number" step="0.5"/></td>
+                    <td><form:errors path="concreteValue" class="alert-danger"/></td>
                 </tr>
 
                 <tr>

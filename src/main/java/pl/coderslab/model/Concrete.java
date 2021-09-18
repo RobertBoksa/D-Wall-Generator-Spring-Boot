@@ -24,9 +24,10 @@ public class Concrete {
     private Double bentoniteHeight;
 
     @NotNull
-    @Min(value = 1)
+    @Min(1)
     private Integer concreteValue;
 
+    @NotNull
     @ManyToOne
     private Section sectionCon;
 
