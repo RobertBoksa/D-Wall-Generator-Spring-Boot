@@ -52,13 +52,19 @@ public class SectionService implements ServiceForAll<Section, Long> {
 
     @Override
     public void update(Section section) {
-        sectionRepository.save(theoreticalConcrete(section));
+        Section editSection = sectionRepository.findById(section.getId()).get();
+        section.setSectionStart(editSection.getSectionStart());
+        section.setSectionEnd(editSection.getSectionEnd());
+        section.setTheoreticalConcrete(editSection.getTheoreticalConcrete());
+       sectionRepository.save(section);
     }
 
     @Transactional
     public void updateStartTime(Long id){
         Section section = sectionRepository.findById(id).orElseThrow();
-        section.setSectionStart(LocalDateTime.now());
+        if(section.getSectionStart() == null){
+            section.setSectionStart(LocalDateTime.now());
+        }
         sectionRepository.save(section);
     }
 
@@ -69,17 +75,16 @@ public class SectionService implements ServiceForAll<Section, Long> {
     public Section endSection(Long id){
         Section section = sectionRepository.findById(id).get();
         section.setStatus(2);
-        try{
+//        try{
             List<Concrete> concreteList= section.getConcreteList();
-            Concrete conctere = concreteList.stream().filter(c->c.getConcreteValue()!=null)
+            Concrete concreteStream = concreteList.stream().filter(c->c.getConcreteValue()!=null)
                     .sorted(Comparator.comparing(Concrete::getControlTime).reversed())
                     .findFirst().get();
 
-            System.out.println(conctere);
-            section.setSectionEnd(conctere.getControlTime());
-        } catch (NullPointerException e){
-            e.printStackTrace();
-        }
+            section.setSectionEnd(concreteStream.getControlTime());
+//        } catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
 
         return section;
     }

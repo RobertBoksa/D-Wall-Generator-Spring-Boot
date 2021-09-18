@@ -19,14 +19,21 @@
 
     <div>
         <table class="table">
-            <form:form  method="post" modelAttribute="digging">
+            <form:form method="post" modelAttribute="digging">
                 <tr>
                     <td><form:label path="sectionDigg">Nazwę sekcji:</form:label></td>
-                    <td><form:select path="sectionDigg" items="${sections}" itemValue="id" itemLabel="sectionName"/></td>
+                    <td>
+                        <form:select path="sectionDigg">
+                            <form:option value="${null}" label="Brak"/>
+                            <form:options items="${sections}" itemValue="id" itemLabel="sectionName"/>
+                        </form:select>
+                    </td>
+                    <td><form:errors path="sectionDigg" class="alert-danger"/></td>
                 </tr>
                 <tr>
                     <td><form:label path="partName"/>Podaj nazwę zbioru:</td>
                     <td><form:select path="partName">
+                        <form:option value="${null}" label="Brak"/>
                         <form:option value="Z1"/>
                         <form:option value="Z2"/>
                         <form:option value="Z3"/>
@@ -35,14 +42,14 @@
                         <form:option value="S:2-3"/>
                         <form:option value="S:3-4"/>
                     </form:select></td>
+                    <td><form:errors path="partName" class="alert-danger"/></td>
                 </tr>
 
                 <tr>
                     <td><form:label path="partLength"/>Podaj długość zbioru:</td>
-                    <td><form:input path="partLength"/></td>
+                    <td><form:input path="partLength" type="number" step="0.01"/></td>
                     <td><form:errors path="partLength" class="alert-danger"/></td>
                 </tr>
-
 
 
                 <tr>

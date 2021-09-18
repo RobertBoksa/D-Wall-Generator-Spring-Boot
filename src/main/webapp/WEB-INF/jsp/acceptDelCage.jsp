@@ -16,9 +16,17 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Czy chcesz usunąć kosz zbrojeniowy o nazwie: ${cage.cageName}</h1>
     </div>
+    <c:if test="${empty cage.sectionList}">
+        <a class="btn btn-primary" href="/admin/cage/" role="button"> -- NIE -- </a>
+        <a class="btn btn btn-danger" href="/admin/cage/deleteAccepted?id=${cage.id}" role="button"> -- TAK -- </a>
+    </c:if>
 
-    <a class="btn btn-primary" href="/admin/cage/" role="button"> -- NIE -- </a>
-    <a class="btn btn btn-danger" href="/admin/cage/deleteAccepted?id=${cage.id}" role="button"> -- TAK -- </a>
+    <c:if test="${not empty cage.sectionList}">
+        <h3>Nie można usunąć tego kosza gdyż jest używany w sekcji.</h3>
+        <a class="btn btn-primary" href="/admin/cage/" role="button"> -- Powrót -- </a>
+    </c:if>
+
+
 
 
 </main>

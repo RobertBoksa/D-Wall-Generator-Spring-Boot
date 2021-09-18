@@ -53,7 +53,7 @@ public class DiggingController {
        Long idSec = diggingReturned.getSectionDigg().getId();
        Long idDig = diggingReturned.getId();
        sectionService.updateStartTime(idSec);
-        return "redirect:/lvlSoil/"+idDig;
+       return "redirect:/lvlSoil/"+idDig;
     }
 
     @RequestMapping("/reports")

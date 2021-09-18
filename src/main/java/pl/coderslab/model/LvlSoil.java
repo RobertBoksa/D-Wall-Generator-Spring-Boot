@@ -28,6 +28,7 @@ public class LvlSoil {
     @DecimalMin("0.10")
     private Double lvlBot;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "soil_id")
     private Soil soil;
